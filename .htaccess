@@ -1,0 +1,36 @@
+# ==============================================================================
+# 1. AI TRAINING & SCRAPING OPT-OUT HEADERS (Applies to all files, images & videos)
+# ==============================================================================
+<IfModule mod_headers.c>
+    Header set X-Robots-Tag "noai, noimageai"
+    Header set TDM-Reservation "1"
+</IfModule>
+
+# ==============================================================================
+# 2. BLOCK KNOWN AI TRAINING & SCRAPER BOTS BY USER-AGENT
+# ==============================================================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{HTTP_USER_AGENT} (GPTBot|ChatGPT-User|OAI-SearchBot|CCBot|Google-Extended|anthropic-ai|ClaudeBot|Claude-Web|Bytespider|Amazonbot|Applebot-Extended|FacebookBot|Meta-ExternalAgent|PerplexityBot|YouBot|Diffbot|ImagesiftBot|Omgilibot|Omgili|cohere-ai|Timpibot|Webz\.io|DataForSeoBot|Scrapy|PetalBot) [NC]
+    RewriteRule ^.*$ - [F,L]
+</IfModule>
+
+# ==============================================================================
+# 3. PREVENT HOTLINKING OF PORTFOLIO IMAGES & VIDEOS
+# ==============================================================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?julietscott\.com [NC]
+    RewriteRule \.(jpg|jpeg|png|gif|webp|svg|mp4|webm)$ - [F,NC,L]
+</IfModule>
+
+# ==============================================================================
+# 4. SECURITY & DIRECTORY PROTECTION
+# ==============================================================================
+Options -Indexes
+
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>

@@ -1,0 +1,158 @@
+/* Media Queries */
+@media (min-width: 768px) {
+  .flex_container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:pl-32 {
+    padding-left: 8rem !important;
+  }
+
+  .lg\:col-span-5 {
+    grid-column: span 5 / span 5 !important;
+  }
+
+  .lg\:col-span-6 {
+    grid-column: span 6 / span 6 !important;
+  }
+
+  .lg\:col-span-7 {
+    grid-column: span 7 / span 7 !important;
+  }
+
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .lg\:grid-cols-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 1300px) {
+  .vertical_align {
+    display: inline-block;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .gutter {
+    gap: 2rem !important;
+  }
+
+  .pt-sides-3,
+  .pt-sides-6,
+  .pt-sides-7 {
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+  }
+
+  .pt-sides-8 {
+    padding: 0 1em;
+  }
+
+  .pt-3,
+  .pt-4 {
+    padding-top: 2em !important;
+  }
+
+  .pb-3,
+  .pb-4 {
+    padding-bottom: 2em !important;
+  }
+
+  h2 {
+    font-size: 1em !important;
+  }
+
+  .intro h1 {
+    font-size: 2.5em;
+  }
+
+  .portfolio_nav ul {
+    display: flex !important;
+    justify-content: flex-start !important;
+    gap: 1.75rem;
+    padding-left: 0;
+  }
+
+  .project-meta {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .mission .gutter {
+    gap: 1rem !important;
+  }
+
+  .smalls .pb-3 {
+    padding-bottom: 1em !important;
+  }
+
+  .draycott .small-text,
+  .custom_bullet li {
+    font-size: 0.7em;
+  }
+
+  .draycott h3 {
+    font-size: 18px;
+  }
+
+  .draycott .text_box {
+    font-size: 1em;
+  }
+
+  .external-links ul li {
+    font-size: 1.2em !important;
+  }
+
+  .about .offset-1,
+  .contact .offset-2 {
+    margin-left: 0;
+  }
+
+  .sm\:grid-cols-1 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .bundle p {
+    font-size: 0.7em !important;
+  }
+
+  .bundle .bundle_body {
+    padding: 3% 0;
+  }
+
+  .bundle .mission {
+    padding: 3% 0 !important;
+  }
+
+  .bundle .logo_stack {
+    text-align: center;
+  }
+
+  .bundle .logo_stack .img-responsive {
+    max-width: 40% !important;
+    margin: auto;
+  }
+
+  .bundle .logo_concept .pt-sides-6,
+  .bundle .color_bars .pt-sides-6 {
+    padding: 0 !important;
+  }
+}

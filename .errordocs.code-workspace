@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "../julietascott-website/.errordocs"
+		},
+		{
+			"path": "../julietascott-website/scss"
+		},
+		{
+			"path": "../julietascott-website/css"
+		},
+		{
+			"path": "../julietascott-website/.git"
+		},
+		{
+			"path": "../julietascott-website/.vscode"
+		},
+		{
+			"path": "../julietascott-website"
+		},
+		{
+			"path": "../juiletscott-website"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": ".vscode"
+	}
+}

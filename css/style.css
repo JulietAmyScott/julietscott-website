@@ -1,0 +1,685 @@
+/* ------------- Loader ------------- */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1E1E1E;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: 100px;
+  height: 40px;
+  --g: radial-gradient(farthest-side, #0000 calc(95% - 1px), #fff calc(100% - 1px) 98%, #0000 101%) no-repeat;
+  background: var(--g), var(--g), var(--g);
+  background-size: 30px 30px;
+  animation: l9 1s infinite alternate;
+}
+
+@keyframes l9 {
+  0%   { background-position: 0 50%, 50% 50%, 100% 50%; }
+  20%  { background-position: 0 0, 50% 50%, 100% 50%; }
+  40%  { background-position: 0 100%, 50% 0, 100% 50%; }
+  60%  { background-position: 0 50%, 50% 100%, 100% 0; }
+  80%  { background-position: 0 50%, 50% 50%, 100% 100%; }
+  100% { background-position: 0 50%, 50% 50%, 100% 50%; }
+}
+
+/* ------------- Base Typography & Media ------------- */
+body {
+  font-family: "helvetica_now_textlight", Helvetica, sans-serif;
+  font-weight: 100;
+  color: #1E1E1E;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "helvetica_now_textlight", Helvetica, sans-serif;
+  font-weight: 100;
+}
+
+p {
+  line-height: 1.5;
+  letter-spacing: 0.04cap;
+}
+
+li {
+  list-style: none;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+
+a {
+  color: #1E1E1E;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.text_box h2 {
+  line-height: 1.6;
+  font-size: 1.4em;
+  margin-bottom: 0;
+}
+
+video,
+iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border: 0;
+}
+
+iframe {
+  aspect-ratio: 16 / 9;
+  min-height: 420px;
+}
+
+/* ------------- Image & AI Protection Deterrents ------------- */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.thumb-frame {
+  position: relative;
+  overflow: hidden;
+}
+
+.thumb-frame img {
+  pointer-events: none;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.portfolio-item:hover .thumb-frame img {
+  opacity: 0.85;
+  transform: scale(1.015);
+}
+
+/* ------------- Hamburger Menu (Top-Left Circle Sandwich) ------------- */
+.menu {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  width: 46px;
+  height: 46px;
+  z-index: 9000;
+}
+
+.menu-circle {
+  position: absolute;
+  inset: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: #1E1E1E;
+  z-index: 1;
+  transition: transform 0.35s ease-in-out;
+  pointer-events: none;
+}
+
+.menu:hover .menu-circle {
+  transform: scale(1.25);
+}
+
+.menu.open .menu-circle {
+  transform: scale(65);
+}
+
+.menu-link {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  width: 46px;
+  height: 46px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 9002;
+  cursor: pointer;
+  text-decoration: none !important;
+  border: none !important;
+}
+
+.menu-icon {
+  position: relative;
+  width: 20px;
+  height: 14px;
+  display: block !important;
+  pointer-events: none;
+}
+
+.menu-line {
+  display: block !important;
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 1.5px;
+  background-color: #ffffff !important;
+  opacity: 1;
+  transition: transform 0.25s ease-in-out, opacity 0.2s ease-in-out, top 0.25s ease-in-out;
+}
+
+.menu-line-1 { top: 0; }
+.menu-line-2 { top: 6px; }
+.menu-line-3 { top: 12px; }
+
+.menu.open .menu-line-1 {
+  top: 6px;
+  transform: rotate(-45deg);
+}
+
+.menu.open .menu-line-2 {
+  opacity: 0;
+}
+
+.menu.open .menu-line-3 {
+  top: 6px;
+  transform: rotate(45deg);
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1E1E1E;
+  z-index: 9001;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: opacity 0.25s ease-in-out, visibility 0.25s ease-in-out;
+}
+
+.menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.menu-overlay ul {
+  padding: 0;
+  margin: 0;
+}
+
+.menu-overlay ul li {
+  margin: 16px 0;
+  font-size: 2em;
+}
+
+.menu-overlay ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: none;
+  transition: color 0.2s ease;
+}
+
+.menu-overlay ul li a:hover {
+  color: #888888;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+/* ------------- No Underlines / Borders on Intro, Sub-Nav & Footer Links ------------- */
+.intro h1 a,
+.intro h1 a:hover,
+.intro h1 a:focus,
+.portfolio_nav .filter-btn,
+.portfolio_nav .filter-btn:hover,
+.portfolio_nav .filter-btn:focus,
+.portfolio_nav .filter-btn.active,
+.footer-links a,
+.footer-links a:hover,
+.footer-links a:focus {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.intro h1 a::after,
+.portfolio_nav .filter-btn::after,
+.footer-links a::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* ------------- Intro ------------- */
+.intro h1 {
+  font-size: 4.5em;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.intro h1 a {
+  font-family: "helvetica_now_textmedium", Helvetica, sans-serif;
+  color: #1E1E1E;
+  transition: color 0.2s ease;
+}
+
+.intro h1 a:hover {
+  color: #777777;
+}
+
+.border {
+  border-top: 1px solid #888888;
+}
+
+/* ------------- Portfolio & Sub-Nav ------------- */
+.portfolio-item.is-hidden {
+  display: none;
+}
+
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 0 18px 0;
+  color: #1E1E1E;
+}
+
+.project-title {
+  font-family: "helvetica_now_textmedium", Helvetica, sans-serif;
+  font-size: 1.05em;
+  color: #1E1E1E;
+}
+
+.project-tag {
+  font-size: 0.9em;
+  color: #777777;
+}
+
+.portfolio_nav {
+  display: block;
+  width: 100%;
+}
+
+.portfolio_nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  padding: 1.5rem 0 0.5rem 0;
+  margin: 0;
+}
+
+.portfolio_nav ul li {
+  font-size: 1.4em;
+}
+
+.portfolio_nav .filter-btn {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0 0 4px 0;
+  cursor: pointer;
+  font-family: "helvetica_now_textlight", Helvetica, sans-serif;
+  font-size: inherit;
+  color: #777777;
+  transition: color 0.2s ease;
+}
+
+.portfolio_nav .filter-btn:hover {
+  color: #1E1E1E;
+}
+
+.portfolio_nav .filter-btn.active {
+  font-family: "helvetica_now_textmedium", Helvetica, sans-serif;
+  color: #1E1E1E;
+}
+
+/* ------------- Floating Back-to-Portfolio & Scroll-to-Top Pill ------------- */
+.floating-nav-pill {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(30, 30, 30, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 8px 14px;
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+}
+
+.floating-nav-pill a,
+.floating-nav-pill button {
+  color: #ffffff;
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  cursor: pointer;
+  padding: 2px 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.floating-nav-pill a:hover,
+.floating-nav-pill button:hover {
+  opacity: 0.7;
+}
+
+.floating-nav-pill .pill-divider {
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ------------- Footer ------------- */
+.site-footer {
+  margin-top: 4rem;
+  padding-top: 0;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.footer-inner p {
+  font-size: 0.85em;
+  color: #666666;
+  margin: 0;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.75rem;
+}
+
+.footer-links a {
+  color: #1E1E1E;
+  font-size: 0.95em;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #777777;
+}
+
+/* ------------- Modal Close ------------- */
+.close_x {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  height: 46px;
+  width: 46px;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.close_icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  inset: 0;
+  margin: auto;
+}
+
+.close-line-1,
+.close-line-2 {
+  background-color: #1E1E1E;
+  height: 1.5px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 9px;
+  transition: transform 0.25s ease-in-out;
+}
+
+.close-line-1 { transform: rotate(-45deg); }
+.close-line-2 { transform: rotate(45deg); }
+.rotate-line-1 { transform: rotate(45deg); }
+.rotate-line-2 { transform: rotate(-45deg); }
+
+/* ------------- About ------------- */
+.about {
+  width: 100%;
+  color: #1E1E1E;
+}
+
+.about a {
+  color: #1E1E1E;
+  border-bottom: 1px solid #1E1E1E;
+}
+
+.about a:hover {
+  color: #777777;
+  border-color: #777777;
+}
+
+.about h1 {
+  font-size: 3em;
+  text-align: center;
+  padding: 2.5em 0 1.5em 0;
+}
+
+.about p {
+  font-size: 1.2em;
+  padding-bottom: 10px;
+}
+
+/* ------------- Contact ------------- */
+.contact h1 {
+  color: #1E1E1E;
+  text-align: center;
+  font-size: 3em;
+  padding: 2.5em 0 1.5em 0;
+}
+
+.contact p {
+  color: #1E1E1E;
+  line-height: 1.6;
+  font-size: 1.2em;
+}
+
+.contact img {
+  width: 100%;
+}
+
+.external-links ul {
+  padding-left: 0;
+}
+
+.external-links ul li {
+  padding-right: 40px;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.contact p a,
+.external-links ul li a {
+  color: #1E1E1E;
+  border-bottom: 1.5px solid #1E1E1E;
+  padding-bottom: 2px;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.contact p a:hover,
+.external-links ul li a:hover {
+  color: #777777;
+  border-bottom-color: #777777;
+}
+
+/* ------------- Project: Levi's ------------- */
+.grey {
+  background-color: #F5F1F1;
+}
+
+/* ------------- Project: Draycott ------------- */
+.draycott_pink {
+  background-color: #f5ebe7;
+}
+
+.draycott p {
+  margin-bottom: 0;
+}
+
+.draycott li {
+  text-align: left;
+}
+
+.draycott .small-text {
+  font-size: 0.6em;
+}
+
+.custom_bullet ul {
+  padding-left: 0;
+  margin-bottom: 0;
+  display: grid;
+  column-gap: 7%;
+  grid-template-columns: repeat(2, auto);
+}
+
+.custom_bullet li {
+  list-style: disc;
+  line-height: 1.3;
+  padding-bottom: 10px;
+}
+
+/* ------------- Project: Pappy's ------------- */
+.pappys_color {
+  background-color: #002639;
+}
+
+.pappys_border {
+  border: 3px solid #0e2141;
+}
+
+.pappys_text {
+  color: #ffffff;
+  line-height: 1.6;
+  font-size: 1.4em;
+  margin-bottom: 0;
+}
+
+/* ------------- Project: X-Type ------------- */
+.xoxo {
+  color: #a186be;
+}
+
+.background_gray {
+  background-color: #cccccc;
+}
+
+/* ------------- Project: Library ------------- */
+.flower-decoration {
+  max-width: 64px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.three-col-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, 620px) 1fr;
+  align-items: center;
+  gap: 32px;
+}
+
+.three-col-grid > div:first-child,
+.three-col-grid > div:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .three-col-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* ------------- Project: Smalls ------------- */
+.smalls_brown,
+.smalls_social_media {
+  background-color: #EBE3D1;
+  padding-bottom: 80px;
+}
+
+.smalls_brown.add_padding {
+  padding-bottom: 3rem;
+}
+
+.smalls_brown .img-wrapper:last-child,
+.smalls_brown .img-wrapper:last-child img {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.mission p {
+  color: #5544F2;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* ------------- Project: Artwalk / Arts District ------------- */
+.tan-background,
+.blue-background {
+  background-color: #D8DFD2;
+}
+
+.portfolio-modal .text_box h6 {
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  line-height: 1.65;
+  font-weight: 400;
+  margin: 0;
+}
+
+.social-link a {
+  font-family: "helvetica_now_textmedium", Helvetica, sans-serif;
+  color: #1E1E1E;
+}
+
+.social-link a:hover {
+  color: #777777;
+}
+
+/* ------------- Project: Bundle to Bundle ------------- */
+.bundle .bundle_body .mission {
+  padding: 3% 10%;
+}
+
+.bundle .bundle_body p {
+  color: #587f95;
+  font-family: "neulis-neue", sans-serif;
+  font-size: 1.5em;
+}
+
+.bundle .collage img {
+  width: 100%;
+}
+
+.bundle .logo_concept {
+  background-image: url("../img/cardboard_bkgd_2.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.bundleCream {
+  background-color: #F6F1E9;
+  border-radius: 4px;
+}
