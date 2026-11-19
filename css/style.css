@@ -58,10 +58,25 @@ a {
   text-decoration: none;
 }
 
-.text_box h2 {
-  line-height: 1.6;
-  font-size: 1.4em;
+/* Unified Portfolio Case Study Typography (matches sanpedrolibrary.html) */
+.text_box h2,
+.pappys_text,
+.bundle .bundle_body p,
+.draycott .custom_bullet li {
+  font-family: "helvetica_now_textlight", Helvetica, sans-serif;
+  font-weight: 100;
+  font-size: 1em;
+  line-height: 1.5;
+  letter-spacing: 0.04cap;
   margin-bottom: 0;
+}
+
+.pappys_text {
+  color: #ffffff;
+}
+
+.bundle .bundle_body p {
+  color: #587f95;
 }
 
 video,
@@ -553,7 +568,7 @@ img {
 
 .custom_bullet li {
   list-style: disc;
-  line-height: 1.3;
+  line-height: 1.5;
   padding-bottom: 10px;
 }
 
@@ -564,13 +579,6 @@ img {
 
 .pappys_border {
   border: 3px solid #0e2141;
-}
-
-.pappys_text {
-  color: #ffffff;
-  line-height: 1.6;
-  font-size: 1.4em;
-  margin-bottom: 0;
 }
 
 /* ------------- Project: X-Type ------------- */
@@ -658,12 +666,6 @@ img {
 /* ------------- Project: Bundle to Bundle ------------- */
 .bundle .bundle_body .mission {
   padding: 3% 10%;
-}
-
-.bundle .bundle_body p {
-  color: #587f95;
-  font-family: "neulis-neue", sans-serif;
-  font-size: 1.5em;
 }
 
 .bundle .collage img {
